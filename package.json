@@ -1,0 +1,25 @@
+{
+  "name": "recurrence-calendar-lib",
+  "version": "0.1.0",
+  "description": "Timezone-correct recurrence expansion and calendar layout engine.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "vitest run",
+    "demo": "tsx examples/cli.ts"
+  },
+  "dependencies": {
+    "rrule": "^2.8.1",
+    "date-fns": "^3.0.0",
+    "date-fns-tz": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.0",
+    "vitest": "^1.4.0"
+  },
+  "license": "MIT"
+}
