@@ -1,50 +1,21 @@
-# Recurrence Calendar Lib
+﻿# 📅 Recurrence Calendar Lib
 
-A timezone-correct recurrence expansion and calendar layout engine.
+A timezone-correct calendar engine designed for parsing complex repeating events (RRULEs) and computing CSS layout matrices for overlapping grid events.
 
-## Features
+## ✨ Features
 
-- **RRULE Expansion**: Expand repeating events safely within boundaries using `date-fns-tz` and `rrule`.
-- **Timezone Safety**: Correctly maps dates and boundaries without leaking local time offsets.
-- **Event Packing Algorithm**: Automatically calculates CSS `left` and `width` percentages for overlapping events on a daily/weekly grid.
+- **RRULE Expansion**: Safely calculates recurring event instances within a date boundary using rule.
+- **Bulletproof Timezones**: Wraps date-fns-tz to ensure events anchor to wall-clock time regardless of the host machine's local timezone.
+- **1D Grid Layout Algorithm**: Automatically computes width and left CSS percentages for overlapping events (like Google Calendar's day view).
+- **EXDATE Support**: Properly respects exclusion dates for modified recurring events.
 
-## Installation
+## 🚀 Quick Start
 
-```bash
-npm install recurrence-calendar-lib
-```
+`ash
+npm install
+npm test
+npm run demo
+`
 
-## Quick Start
-
-```typescript
-import { expandRecurringEvents, computeEventLayouts } from "recurrence-calendar-lib";
-
-const event = {
-  id: "meeting",
-  start: new Date("2024-03-01T10:00:00Z"),
-  end: new Date("2024-03-01T11:00:00Z"),
-  rrule: "FREQ=WEEKLY;BYDAY=TU,TH"
-};
-
-// 1. Expand occurrences for the month
-const rangeStart = new Date("2024-03-01T00:00:00Z");
-const rangeEnd = new Date("2024-03-31T23:59:59Z");
-const instances = expandRecurringEvents([event], rangeStart, rangeEnd, "America/New_York");
-
-// 2. Compute CSS layout for a daily/weekly view
-const cssLayouts = computeEventLayouts(instances);
-console.log(cssLayouts["meeting_2024-03-05"]); // { left: "0%", width: "100%" }
-```
-
-## Architecture
-
-```mermaid
-flowchart TD
-    Raw[Raw Events with RRULE] -->|expandRecurringEvents| Expanded[Expanded Instances]
-    Timezone[Timezone Data] -->|resolveTimezone| Raw
-    Expanded -->|computeEventLayouts| Layout[CSS Left/Width Mappings]
-```
-
-## License
+## 📄 License
 MIT
-
